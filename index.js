@@ -1,11 +1,17 @@
 const express = require('express');
+const hbs = require('express-handlebars');
 const { Sequelize } = require('sequelize');
 const app = express();
 const path = require('path');
 
 //! Set the view engine to ejs
-app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main',
+    layoutsDir: __dirname + '/views/layouts',
+}));
 
 //! Set the static folder
 app.use(express.json());
@@ -19,12 +25,19 @@ sequelize.authenticate().then(() => {
 }) .catch((error) => {
     console.error('Unable to connect to the database:', error);
 });
-//! Get all user data
+
+//! app.use
+//* Access the public folder
+app.use(express.static('public'));
+
+//* Get all user data
 const userDataRouter = require('./router/user_data');
 app.use('/', userDataRouter);
-//! Create a new user
+
+//* Create a new user
 const createUserRouter = require('./router/create_user');
-app.use('/create_user', createUserRouter);
+app.use('/createUserForm', createUserRouter);
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
