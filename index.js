@@ -19,9 +19,12 @@ sequelize.authenticate().then(() => {
 }) .catch((error) => {
     console.error('Unable to connect to the database:', error);
 });
-
-const createUserRouter = require('./router/create-user');
-app.use('/', createUserRouter);
+//! Get all user data
+const userDataRouter = require('./router/user_data');
+app.use('/', userDataRouter);
+//! Create a new user
+const createUserRouter = require('./router/create_user');
+app.use('/create_user', createUserRouter);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

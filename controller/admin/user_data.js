@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/demo_login_db')
-const models = require('../models');
+const models = require('../../models');
 
 //! Get all user data
 const getAllData = (req, res) => {
