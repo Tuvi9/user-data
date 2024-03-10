@@ -2,20 +2,28 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const { Sequelize } = require('sequelize');
 const app = express();
-const path = require('path');
+const sessions = require('express-session');
 
-//! Set the view engine to ejs
-app.set('views', path.join(__dirname, 'views'));
+//! Handlebars
 app.set('view engine', 'hbs');
+app.set('views', 'views');
 app.engine('hbs', hbs.engine({
     extname: 'hbs',
-    defaultLayout: 'main',
+    defaultView: 'home',
     layoutsDir: __dirname + '/views/layouts',
 }));
 
 //! Set the static folder
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(sessions({
+    secret: 'secret-key',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: false,
+    saveUninitialized: true
+})); 
+ 
 
 const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/demo_login_db')
 
@@ -32,12 +40,11 @@ app.use(express.static('public'));
 
 //* Get all user data
 const userDataRouter = require('./router/user_data');
-app.use('/', userDataRouter);
+app.use('/admin', userDataRouter);
 
 //* Create a new user
 const createUserRouter = require('./router/create_user');
-app.use('/createUserForm', createUserRouter);
-
+app.use('/users', createUserRouter);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
