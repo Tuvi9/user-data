@@ -42,7 +42,7 @@ app.use(express.static('public'));
 const userDataRouter = require('./router/user_data');
 app.use('/admin', userDataRouter);
 
-//* Create a new user
+//* User creation and login routes
 const createUserRouter = require('./router/create_user');
 app.use('/users', createUserRouter);
 
