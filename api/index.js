@@ -10,7 +10,7 @@ app.set('views', 'views');
 app.engine('hbs', hbs.engine({
     extname: 'hbs',
     defaultView: 'home',
-    layoutsDir: __dirname + '/views/layouts',
+    layoutsDir: __dirname + '../../views/layouts',
 }));
 
 //! Set the static folder
@@ -39,11 +39,11 @@ sequelize.authenticate().then(() => {
 app.use(express.static('public'));
 
 //* Get all user data
-const userDataRouter = require('../router/user_data');
+const userDataRouter = require('./router/user_data');
 app.use('/admin', userDataRouter);
 
 //* User creation and login routes
-const createUserRouter = require('../router/create_user');
+const createUserRouter = require('./router/create_user');
 app.use('/users', createUserRouter);
 
 app.listen(3000, () => {
