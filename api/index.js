@@ -38,6 +38,7 @@ sequelize.authenticate().then(() => {
 //* Access the public folder
 app.use(express.static('public'));
 
+/*
 //* Get all user data
 const userDataRouter = require('./router/user_data');
 app.use('/admin', userDataRouter);
@@ -49,3 +50,4 @@ app.use('/users', createUserRouter);
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 })
+*/
