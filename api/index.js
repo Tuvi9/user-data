@@ -3,6 +3,8 @@ const hbs = require('express-handlebars');
 const { Sequelize } = require('sequelize');
 const app = express();
 const sessions = require('express-session');
+const dotEnv = require('dotenv')
+dotEnv.config()
 
 //! Handlebars
 app.set('view engine', 'hbs');
@@ -25,7 +27,7 @@ app.use(sessions({
 })); 
  
 
-const sequelize = new Sequelize('mysql://root:1590@localhost:3306/demo_login_db')
+const sequelize = new Sequelize(process.env.DATABASE_URL)
 
 //! Test the connection
 sequelize.authenticate().then(() => {
