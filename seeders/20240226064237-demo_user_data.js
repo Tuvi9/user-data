@@ -8,6 +8,7 @@ module.exports = {
           {
             username: 'Kaspar1',
             password: 'qwerty',
+            email: 'kaspar.pavel@voco.ee',
             createdAt: new Date(),
             updatedAt: new Date()
           }
@@ -16,6 +17,7 @@ module.exports = {
         {
           username: 'Kalle2',
           password: 'asdfg',
+          email: 'kalle.riit@voco.com',
           createdAt: new Date(),
           updatedAt: new Date()
         }
@@ -24,6 +26,7 @@ module.exports = {
         {
           username: 'Sass3',
           password: 'zxcvb',
+          email: 'a.potasenkov@voco.ee',
           createdAt: new Date(),
           updatedAt: new Date()
         }

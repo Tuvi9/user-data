@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const model = require('../models');
 const nodeMailer = require('nodemailer');
-
+const dotEnv = require('dotenv')
+dotEnv.config()
 
 
 const register = (req, res) => {
@@ -28,7 +29,7 @@ const register = (req, res) => {
                 auth: {
                     user: 'kaspupavel@gmail.com',
                     //? Generated password for gmail authentication
-                    pass: 'rpxm yfpf tuli rlet'
+                    pass: process.env.GMAIL
                 }
             });
             //? Create the mail form

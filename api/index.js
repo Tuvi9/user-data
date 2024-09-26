@@ -25,7 +25,7 @@ app.use(sessions({
 })); 
  
 
-const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/demo_login_db')
+const sequelize = new Sequelize('mysql://root:1590@localhost:3306/demo_login_db')
 
 //! Test the connection
 sequelize.authenticate().then(() => {
