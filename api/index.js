@@ -27,7 +27,11 @@ app.use(sessions({
 })); 
  
 
-const sequelize = new Sequelize(process.env.DATABASE_URL)
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    logging: false
+});
 
 //! Test the connection
 sequelize.authenticate().then(() => {
